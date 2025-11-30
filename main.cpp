@@ -25,12 +25,49 @@ vector<Baggage> baggageInformation(const string& filename) {
     
     while (file >> name >> temp.itemCount >> temp.totalWeight) {
         baggageList.push_back(temp);
-        cout << "Прочитано: " << name << " - " << temp.itemCount 
-             << " вещей, " << temp.totalWeight << " кг" << endl;
     }
     
     file.close();
     return baggageList;
+}
+
+double calculateAverageItems(const vector<Baggage>& baggageList) {
+    if (baggageList.empty()) return 0.0;
+    
+    int totalItems = 0;
+    for (const auto& baggage : baggageList) {
+        totalItems += baggage.itemCount;
+    }
+    
+    return static_cast<double>(totalItems) / baggageList.size();
+}
+
+void solveTaskA(const vector<Baggage>& baggageList) {
+    cout << "\n--- РЕШЕНИЕ ЗАДАЧИ а) ---" << endl;
+
+    int passengersWithMoreThan2Items = 0;
+    for (const auto& baggage : baggageList) {
+        if (baggage.itemCount > 2) {
+            passengersWithMoreThan2Items++;
+        }
+    }
+    
+    cout << "1. Число пассажиров с более чем 2 вещами: " 
+         << passengersWithMoreThan2Items << endl;
+    
+    
+    double averageItems = calculateAverageItems(baggageList);
+    int passengersAboveAverage = 0;
+    
+    for (const auto& baggage : baggageList) {
+        if (baggage.itemCount > averageItems) {
+            passengersAboveAverage++;
+        }
+    }
+    
+    cout << "2. Среднее количество вещей: " << averageItems << endl;
+    cout << "3. Число пассажиров с количеством вещей выше среднего: " 
+         << passengersAboveAverage << endl;
 }
 
 int main() {
