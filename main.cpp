@@ -102,5 +102,10 @@ int main() {
     
     cout << "Успешно загружено данных о " << baggageList.size() << " пассажирах" << endl;
     
+    solveTaskA(baggageList);
+    solveTaskB(baggageList);
+    
+    return 0;
+}
     return 0;
 }
