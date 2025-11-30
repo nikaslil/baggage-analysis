@@ -70,6 +70,24 @@ void solveTaskA(const vector<Baggage>& baggageList) {
          << passengersAboveAverage << endl;
 }
 
+void solveTaskB(const vector<Baggage>& baggageList) {
+    cout << "\n--- РЕШЕНИЕ ЗАДАЧИ б) ---" << endl;
+    cout << "Поиск пассажира с одной вещью массой менее 6 кг:" << endl;
+    
+    bool found = false;
+    
+    for (int i = 0; i < baggageList.size(); i++) {
+        if (baggageList[i].itemCount == 1 && baggageList[i].totalWeight < 6.0) {
+            cout << "✓ НАЙДЕНО: Пассажир #" << (i + 1) 
+                 << " - 1 вещь, вес: " << baggageList[i].totalWeight << " кг" << endl;
+            found = true;
+        }
+    }
+    
+    if (!found) {
+        cout << "✗ Пассажиров с одной вещью массой менее 6 кг не найдено." << endl;
+    }
+}
 int main() {
     cout << "=== ПРОГРАММА ДЛЯ АНАЛИЗА БАГАЖА ПАССАЖИРОВ ===" << endl;
     cout << "Этап 1: Чтение данных из файла" << endl;
